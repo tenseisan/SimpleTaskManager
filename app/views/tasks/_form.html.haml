@@ -1,0 +1,16 @@
+= form_with(model: @task) do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.label :description
+    = f.text_area :description, class: 'form-control',
+      style: 'height: 150px'
+  .form-group
+    = f.label :assignee_id, 'By default task assignee to you!'
+    = f.select :assignee_id,
+      options_from_collection_for_select(User.all, :id, :email, current_user.id),
+      {}, class: 'form-control'
+  .actions
+    = f.submit 'Save', class: 'btn btn-primary'
+    или #{link_to 'Back', authenticated_root_path}

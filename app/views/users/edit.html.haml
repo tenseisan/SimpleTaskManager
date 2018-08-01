@@ -1,0 +1,21 @@
+.col-lg-4
+.col-lg-4
+  .panel.panel-default.devise-bs
+    .panel-heading
+      %h4 Edit Profile
+    .panel-body
+      = form_for(@user) do |f|
+        = render partial: 'partials/form_errors', locals: {model: @user}
+        .form-group
+          = f.label :first_name
+          = f.text_field :first_name, class: 'form-control'
+          .form-group
+          = f.label :last_name
+          = f.text_field :last_name, class: 'form-control'
+          .form-group
+          = f.label :password
+          = f.password_field :password, class: 'form-control'
+        .form-group
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation, class: 'form-control'
+        = f.submit 'Submit', class: 'btn btn-primary'

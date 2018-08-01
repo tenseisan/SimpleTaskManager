@@ -1,0 +1,54 @@
+/*
+ *= require twitter-bootstrap-static/bootstrap
+ *= require twitter-bootstrap-static/sprites
+ *= require font-awesome
+
+ *= require_tree .
+ *= require_self
+ */
+
+/* Buffers */
+
+.buffer-left {
+    margin-left: 20px;
+}
+
+.buffer-right {
+    margin-right: 20px;
+}
+
+.buffer-top {
+    margin-top: 20px;
+}
+
+.buffer-bottom {
+    margin-bottom: 20px;
+}
+
+.buffer-both {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* custom styles */
+
+.ul {
+    list-style: none;
+}
+
+textarea {
+    width: 300px;
+    height: 150px;
+}
+
+.border {
+    border: 1px solid #dee2e6 !important;
+}
+
+.border-success {
+    border-color: #28a745 !important;
+}
+
+.border-warning {
+    border-color: #ff2b42 !important;
+}

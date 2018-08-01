@@ -1,0 +1,22 @@
+.text-center
+  %h1
+    = @user.first_name
+    = @user.last_name
+.col-lg-4
+  %h2.text-center Untaken
+  - if @user.assigned_tasks.untaken.present?
+    = render partial: 'users/tasks', locals: { tasks: @user.assigned_tasks.untaken }
+  - else
+    %h1.text-center No tasks for you
+.col-lg-4
+  %h2.text-center In Work
+  - if @user.assigned_tasks.in_work.present?
+    = render partial: 'users/tasks', locals: { tasks: @user.assigned_tasks.in_work }
+  - else
+    %h1.text-center No tasks in work
+.col-lg-4
+  %h2.text-center Completed
+  - if @user.assigned_tasks.completed.present?
+    = render partial: 'users/tasks', locals: { tasks: @user.assigned_tasks.completed }
+  - else
+    %h1.text-center No completed tasks

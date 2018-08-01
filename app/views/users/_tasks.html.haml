@@ -1,0 +1,21 @@
+- tasks.each do |task|
+  .col-lg-12.buffer-bottom
+    %div{:class => "border #{task.status == 'Complete' ? 'border-success' : 'border-warning'}"}
+      .card.buffer-left
+        .card-body
+          %h3.card-title= task.title
+          %p.card-text= task.description
+          %p.card-text
+            Started: #{task.started_at.to_formatted_s(:short) if task.started_at.present?}
+          %p.card-text
+            Finished: #{task.finished_at.to_formatted_s(:short) if task.finished_at.present?}
+          = button_to('Complete', complete_task_path(task),
+            method: :put,
+            class: 'btn btn-primary') if task.status == 'In_work'
+          = button_to('Take', take_task_path(task),
+            method: :put,
+            class: 'btn btn-primary') if task.status == 'Untaken'
+      = link_to task_path(task), method: :delete do
+        %i.fa.fa-trash.buffer-left
+      = link_to edit_task_path(task) do
+        %i.fa.fa-edit.buffer-left
