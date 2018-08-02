@@ -37,14 +37,14 @@ class TasksController < ApplicationController
 
   def complete
     @task = Task.find(params[:id])
-    @task.complete_task
+    @task.complete
 
     redirect_to authenticated_root_path, notice: 'You has finished task'
   end
 
   def take
     @task = Task.find(params[:id])
-    @task.take_task
+    @task.take
 
     redirect_to authenticated_root_path, notice: 'Lets work!'
   end

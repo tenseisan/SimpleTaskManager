@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_current_user
-  before_action :authenticate_user!
+  before_action :set_current_user, only: %i[update edit profile]
+  before_action :authenticate_user!, only: %i[update edit]
+
+  def profile
+    redirect_to unauthenticated_root_path if current_user.nil?
+  end
 
   def show
-    @user = User.find_by(id: params[:id]) || current_user
+    @user = User.find(params[:id])
   end
 
   def edit; end

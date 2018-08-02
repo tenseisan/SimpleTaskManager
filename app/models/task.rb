@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
-  STATUS = %w[untaken in_work complete].freeze
+  STATUSES = %w[untaken in_work complete].freeze
 
   scope :completed, -> { where(status: 'complete') }
   scope :in_work, -> { where(status: 'in_work') }
@@ -9,18 +9,18 @@ class Task < ApplicationRecord
 
   belongs_to :user, foreign_key: :creator_id, class_name: 'User',
                     inverse_of: :created_tasks
-  validates :status, inclusion: STATUS, allow_nil: true
+  validates :status, inclusion: STATUSES, allow_nil: true
   validates :title, :creator_id, presence: true
 
   before_validation :set_status
 
-  def complete_task
+  def complete
     self.status = 'complete'
     self.finished_at = Time.zone.now
     save
   end
 
-  def take_task
+  def take
     self.status = 'in_work'
     self.started_at = Time.zone.now
     save

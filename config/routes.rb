@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root 'users#show', as: :authenticated_root
+      root 'users#profile', as: :authenticated_root
     end
 
     unauthenticated do
@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: %i[show update edit]
+  resources :users, only: %i[show update edit current] do
+    collection do
+      get :profile
+    end
+  end
   resources :tasks, only: %i[new create update destroy edit] do
     member do
       put 'complete'

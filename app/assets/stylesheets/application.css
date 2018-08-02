@@ -52,3 +52,10 @@ textarea {
 .border-warning {
     border-color: #ff2b42 !important;
 }
+
+.card {
+    max-width: 100%;
+}
+.card-text {
+    word-wrap: break-word;
+}

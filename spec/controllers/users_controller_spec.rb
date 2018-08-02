@@ -10,11 +10,10 @@ RSpec.describe UsersController, type: :controller do
   context 'anonym user' do
     describe 'GET #show' do
       it 'response and redirect to new_session' do
-        get :show
+        get :profile
 
         expect(response.status).not_to eq(200)
-        expect(response).to redirect_to(new_user_session_path)
-        expect(flash[:alert]).to be
+        expect(response).to redirect_to(unauthenticated_root_path)
       end
 
       describe 'GET #edit' do
