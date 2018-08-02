@@ -37,6 +37,7 @@ class TasksController < ApplicationController
 
   def complete
     @task = Task.find(params[:id])
+    @task[:finished_at] = Time.zone.now
     @task.complete!
 
     redirect_to authenticated_root_path, notice: 'You has finished task'
@@ -44,7 +45,8 @@ class TasksController < ApplicationController
 
   def take
     @task = Task.find(params[:id])
-    @task.take!
+    @task[:started_at] = Time.zone.now
+    @task.in_work!
 
     redirect_to authenticated_root_path, notice: 'Lets work!'
   end
