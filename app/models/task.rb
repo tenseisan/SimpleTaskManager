@@ -11,6 +11,6 @@ class Task < ApplicationRecord
   belongs_to :user, foreign_key: :creator_id, class_name: 'User',
                     inverse_of: :created_tasks
 
-  validates :title, :creator_id, presence: true
+  validates :title, :creator_id, :assignee_id, presence: true
   validates :title, length: { maximum: 30 }
 end

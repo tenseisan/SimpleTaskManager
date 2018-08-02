@@ -4,7 +4,10 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
   let(:user) { FactoryBot.create(:user) }
-  let(:task) { FactoryBot.create(:task, user: user) }
+  let(:task) do
+    FactoryBot.create(:task, user: user, creator_id: user.id,
+                             assignee_id: user.id)
+  end
 
   describe 'validates' do
     context 'presence' do
