@@ -56,6 +56,6 @@ textarea {
 .card {
     max-width: 100%;
 }
-.card-text {
+.card-text, .card-title {
     word-wrap: break-word;
 }

@@ -23,7 +23,7 @@ RSpec.describe Task, type: :model do
 
   describe '#complete_task' do
     it 'should set complete status and finished time' do
-      task.complete
+      task.complete!
 
       expect(task.status).to eq 'complete'
       expect(task.finished_at).to be
@@ -32,7 +32,7 @@ RSpec.describe Task, type: :model do
 
   describe '#take_task' do
     it 'should set in work status and start time' do
-      task.take
+      task.take!
 
       expect(task.status).to eq 'in_work'
       expect(task.started_at).to be
@@ -41,11 +41,11 @@ RSpec.describe Task, type: :model do
 
   describe 'scopes' do
     it '#completed should return completed tasks' do
-      task.complete
+      task.complete!
       expect(Task.completed.count).to be(1)
     end
     it '#in_work should return in work tasks' do
-      task.take
+      task.take!
       expect(Task.in_work.count).to be(1)
     end
     it '#untaken should return untaken tasks' do

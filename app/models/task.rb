@@ -11,16 +11,17 @@ class Task < ApplicationRecord
                     inverse_of: :created_tasks
   validates :status, inclusion: STATUSES, allow_nil: true
   validates :title, :creator_id, presence: true
+  validates :title, length: { maximum: 30 }
 
   before_validation :set_status
 
-  def complete
+  def complete!
     self.status = 'complete'
     self.finished_at = Time.zone.now
     save
   end
 
-  def take
+  def take!
     self.status = 'in_work'
     self.started_at = Time.zone.now
     save
