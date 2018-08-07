@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
+  # колбек, который устанавливает возможность использовать экшены только таск юзера.
   before_action :set_current_task_user,
                 only: %i[edit update destroy complete take]
 
   def new
-    @task = current_user.created_tasks.build
+    @task = current_user.created_tasks.create
   end
 
   def create
-    @task = current_user.created_tasks.build(task_params)
+    @task = current_user.created_tasks.create(task_params)
 
     if @task.save
       redirect_to authenticated_root_path, notice: 'You created new task'
@@ -54,9 +55,7 @@ class TasksController < ApplicationController
   private
 
   def set_current_task_user
-    @task = current_user.assigned_tasks.find_by(id: params[:id])
-
-    redirect_back(fallback_location: authenticated_root_path) unless @task
+    @task = current_user.assigned_tasks.find(params[:id])
   end
 
   def task_params
