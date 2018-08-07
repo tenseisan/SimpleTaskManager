@@ -1,15 +1,14 @@
 - tasks.each do |task|
-  .col-lg-12.buffer-bottom
+  .col-lg-12
     %div{:class => "border #{task.status == 'complete' ? 'border-success' : 'border-warning'}"}
-      .card
-        .card-body.buffer-left.buffer-right
+      .card.buffer-left.buffer-right
+        .card-body
           %h3.card-title= task.title
           %p.card-text= task.description
           %p.card-text
             Started: #{task.started_at.to_formatted_s(:short) if task.started_at.present?}
           %p.card-text
             Finished: #{task.finished_at.to_formatted_s(:short) if task.finished_at.present?}
-            - binding.pry
         - if task.user == current_user
           = button_to('complete', complete_task_path(task),
             method: :put,
