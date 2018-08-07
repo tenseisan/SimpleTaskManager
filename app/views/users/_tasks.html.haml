@@ -9,6 +9,8 @@
             Started: #{task.started_at.to_formatted_s(:short) if task.started_at.present?}
           %p.card-text
             Finished: #{task.finished_at.to_formatted_s(:short) if task.finished_at.present?}
+            - binding.pry
+        - if task.user == current_user
           = button_to('complete', complete_task_path(task),
             method: :put,
             class: 'btn btn-primary') if task.status == 'in_work'
